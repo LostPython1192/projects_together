@@ -1,0 +1,165 @@
+import random
+import sys
+import time
+
+def clean_input(input:str):
+
+    if not input.strip():
+        # Not a valid input
+
+        print("Not a valid answer")
+        
+        return 1
+    
+    # Valid input
+
+    return 0
+
+def loading():
+
+    #print("CREATING STORY PLEASE HOLD")
+
+    sys.stdout.write("CREATING STORY PLEASE WAIT")
+    sys.stdout.flush()
+
+    time.sleep(random.randrange(3, 10))
+
+    sys.stdout.write("\rAdding spice              ")
+    sys.stdout.flush()
+
+    time.sleep(4)
+    
+    sys.stdout.write("\rAdding humor              ")
+    sys.stdout.flush()
+
+    sys.stdout.write("\rCOMPLETED!              \n")
+
+def wait():
+
+    time.sleep(random.randrange(3, 5))
+
+def ask(question, space=True):
+
+    while True:
+
+        if space:
+            answer = input(f"{question} ")
+        else:
+            answer = input(f"{question}")
+
+
+        if clean_input(answer) == 0:
+            return answer
+
+        else:
+            continue
+
+# 
+def ask_options(question, space=True, allowed=[], non_allowed=[], ):
+
+    while True:
+
+        if space:
+            answer = input(f"{question} ")
+        else:
+            answer = input(f"{question}")
+
+        if allowed != []:
+
+            if clean_input(answer) == 0 and answer in allowed:
+                return answer
+        
+        else:
+
+            if clean_input(answer) == 0 and answer not in non_allowed:
+                return answer
+            
+            else:
+                continue
+
+print("Welcome to mad libs!")
+
+game_style = ['[1] Going to the store', ' [2] My fist high school dance', ' [3] My first barbeque', ' [4] My first time driving']
+    
+scenario = ""
+
+
+while True:
+
+    scenario = ask(f"What scenario would you like to play?\n{game_style[0]} {game_style[1]} {game_style[2]} {game_style[3]}\n", False)
+
+
+    if scenario in ['1', '2', '3', '4']:
+
+        break
+
+    print("Only (1, 2, 3, 4) are vaild answers!\n")
+    continue
+
+# Going to the store
+if scenario == "1":
+
+    mainchar = ask("Give me a name")
+    store = ask("Give me a store")
+    
+    
+    noun1 = ask("Give me a noun")
+    enemy = ask("Give me someone you dislike")
+
+    noun2 = ask("Give me another noun")
+
+    verb1 = ask("Give me a verb ending in 'ed'")
+    verb2 = ask("Give me a violent verb")
+    verb3 = ask("Give me another violent verb")
+
+    noun3 = ask("Give me a noun")
+
+    age = ask("Give me an age")
+    gender = ask("Give me a gender(good luck...)")
+    
+    verb4 = ask("Give me a verb ending in 'ing'")
+
+    verb4new = verb4.removesuffix("ing")
+    
+    bodypart1 = ask("Give me a body part")
+    bodypart2 = ask("Give me a different body part")
+
+    place = ask("Give me a place")
+    color1 = ask("Give me a color")
+    
+    
+    loading()
+    
+    print(f"""One day, {mainchar} went to {store} to get {noun1}.""")
+    wait()
+    print(f"Unfortuantly, {mainchar} didn't find any {noun1} on the shelves, but did find it in {enemy}'s shopping cart!")
+    wait()
+    print(f"{mainchar} took a {noun2} from the shelves and {verb1} it on {enemy}'s head! ")
+    wait()
+    print(f"{enemy} grabbed {mainchar}'s {bodypart1} and {verb2} {mainchar} in the {bodypart2}!")
+    wait()
+    print(f"With all the commotion, {store}'s security showed up to {verb3} {enemy} and {mainchar}!")
+    wait()
+    print(f"{mainchar} tried to get out of there, but ended up tripping on a {age} year old {gender}! ")
+    wait()
+    print(f"The {store}'s security ended up chatching {mainchar}, and has brought them to {place} for interrogation, and strapped {mainchar} to a chair!")
+    wait()
+    print(f"'I cought you {verb4}! Now you're coming with me to the {place}!' Said the {store}'s security. ")
+    wait()
+    print(f"'I didn't {verb4new}! I just wanted to get {noun1}, then {enemy} attacked me! I'm innocent!' said {mainchar}")
+    wait()
+    print(f"'don't you lie, it was all recorded on the {store}'s {noun3}s.' ")
+    wait()
+    print(f"'I'm not lying, just check the {noun3}.' as the {store}'s security walked away, {mainchar} got out of the chair and ran away.")
+    wait()
+    print(f"Hopeful that dosen't happen again! The next day, {mainchar} went to {store}...")
+
+
+elif scenario == "2":
+
+    pass
+
+
+else:
+    
+    print("Sorry that story is not ready yet!")
